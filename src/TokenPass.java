@@ -15,20 +15,14 @@ public class TokenPass
 
     public void distributeCurrentPlayerTokens()
     {
-        if(board[currentPlayer] <= 1)
+        int nextPlayer = currentPlayer;
+        int numToDistribute = board[currentPlayer];
+        board[currentPlayer] = 0;
+        while(numToDistribute > 0)
         {
-            while(board[currentPlayer] > 0)
-            {
-                int j = currentPlayer + 1;
-                if(j < board.length)
-                {
-                    j = 0;
-                }
-                board[j] += 1;
-                board[currentPlayer] -= 1;
-
-                j++;
-            }
+            nextPlayer = (nextPlayer +1) % board.length;
+            board[nextPlayer]++;
+            numToDistribute--;
         }
     }
 
